@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+  <bean id="sessionRegistry" class="org.jtalks.jcommune.service.MockSessionRegistry"/>
+  <bean id="rememberMeServices" class="org.jtalks.jcommune.service.MockRememberMeServices"/>
+  <bean id="concurrentSessionControlStrategy"
+        class="org.springframework.security.web.authentication.session.ConcurrentSessionControlStrategy">
+    <constructor-arg index="0" ref="sessionRegistry"/>
+  </bean>
+</beans>
