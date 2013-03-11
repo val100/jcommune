@@ -417,8 +417,6 @@ public class TransactionalUserServiceTest {
         
         assertTrue(isAuthenticated);
         assertNotNull(user.getLastLogin());
-        verify(userDao).getByUsername(username);
-        verify(authenticationManager).authenticate(any(UsernamePasswordAuthenticationToken.class));
         verify(securityContext).setAuthentication(expectedToken);
         verify(rememberMeServices, never()).loginSuccess(any(HttpServletRequest.class), any(HttpServletResponse.class), any(Authentication.class));
         verify(sessionStrategy).onAuthentication(any(Authentication.class), 
