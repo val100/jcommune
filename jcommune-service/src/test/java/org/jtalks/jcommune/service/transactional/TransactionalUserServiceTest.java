@@ -93,8 +93,6 @@ public class TransactionalUserServiceTest {
     @Mock
     private UserDao userDao;
     @Mock
-    private JCUser user;
-    @Mock
     private GroupDao groupDao;
     @Mock
     private SecurityService securityService;
@@ -403,7 +401,8 @@ public class TransactionalUserServiceTest {
     @Test
     public void testLoginSuccess() throws Exception {
         String username = "username";
-        when(userDao.getByUsername(username)).thenReturn(user);
+        JCUser user = new JCUser(username, null, null);
+        when(userDao.getByUsername(username)).thenReturn(user );
 
         HttpServletRequest httpRequest = new MockHttpServletRequest();
         HttpServletResponse httpResponse = new MockHttpServletResponse();
@@ -411,11 +410,13 @@ public class TransactionalUserServiceTest {
         when(expectedToken.isAuthenticated()).thenReturn(true);
         when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class))).thenReturn(expectedToken);
         
+        
+        assertNull(user.getLastLogin());
         boolean isAuthenticated = userService.loginUser(username, 
                 PASSWORD, false, httpRequest, httpResponse);
         
         assertTrue(isAuthenticated);
-        verify(user, atLeastOnce()).updateLastLoginTime();
+        assertNotNull(user.getLastLogin());
         verify(userDao).getByUsername(username);
         verify(authenticationManager).authenticate(any(UsernamePasswordAuthenticationToken.class));
         verify(securityContext).setAuthentication(expectedToken);
