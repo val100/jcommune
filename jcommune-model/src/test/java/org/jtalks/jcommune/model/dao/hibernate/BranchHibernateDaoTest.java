@@ -81,11 +81,11 @@ public class BranchHibernateDaoTest extends AbstractTransactionalTestNGSpringCon
         assertReflectionEquals(branch, result);
     }
 
-    @Test(enabled = false)
-    public void testSaveWithTopic() {
-        JCUser topicStarter = ObjectsFactory.getDefaultUser();
-        Branch branch = ObjectsFactory.getDefaultBranch();
-        Topic topic = ObjectsFactory.getDefaultTopic();
+    @Test
+    public void testSaveBranchWithTopic() {
+        Branch branch = new Branch("name", "description");
+        JCUser topicStarter = new JCUser("username", "email@mail.com", "password");
+        Topic topic = new Topic(topicStarter, "title");
         branch.addTopic(topic);
         session.save(topicStarter);
         session.save(branch);
@@ -93,11 +93,13 @@ public class BranchHibernateDaoTest extends AbstractTransactionalTestNGSpringCon
         session.flush();
         assertEquals(getCount("select count(*) from org.jtalks.jcommune.model.entity.Branch"), 1);
         assertEquals(getCount("select count(*) from Topic"), 1);
+        assertEquals(getCount("select count(*) from User"), 1);
 
         branch.deleteTopic(topic);
         dao.update(branch);
         session.flush();
 
+        assertEquals(getCount("select count(*) from User"), 1);
         assertEquals(getCount("select count(*) from org.jtalks.jcommune.model.entity.Branch"), 1);
         assertEquals(getCount("select count(*) from Topic"), 0);
     }
