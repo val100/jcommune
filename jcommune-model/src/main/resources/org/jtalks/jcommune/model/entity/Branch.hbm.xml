@@ -51,7 +51,6 @@
                      not-null="false"/>
 
         <subclass name="org.jtalks.jcommune.model.entity.Branch"
-                  extends="org.jtalks.common.model.entity.Branch"
                   discriminator-value="BRANCH">
             <bag name="topics" cascade="all-delete-orphan"
                  order-by="sticked DESC, modificationDate DESC">
