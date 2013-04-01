@@ -14,6 +14,7 @@
  */
 package org.jtalks.jcommune.model.dao.hibernate;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -56,7 +57,6 @@ public class LastReadPostHibernateDao extends AbstractHibernateChildRepository<L
         return (LastReadPost) getSession().getNamedQuery("getLastReadPostInTopicForUser")
                 .setParameter("topic", topic)
                 .setParameter("user", forWho)
-                .setCacheable(false)
                 .uniqueResult();
     }
     
@@ -66,11 +66,13 @@ public class LastReadPostHibernateDao extends AbstractHibernateChildRepository<L
     @Override
     @SuppressWarnings("unchecked")
     public List<LastReadPost> getLastReadPosts(JCUser forWho, List<Topic> sourceTopics) {
-        return (List<LastReadPost>) getSession().getNamedQuery("getLastReadPostsInTopicsForUser")
-                .setParameterList("sourceTopics", sourceTopics)
-                .setParameter("user", forWho)
-                .setCacheable(false)
-                .list();
+        if (!sourceTopics.isEmpty()) {
+            return (List<LastReadPost>) getSession().getNamedQuery("getLastReadPostsInTopicsForUser")
+                    .setParameterList("sourceTopics", sourceTopics)
+                    .setParameter("user", forWho)
+                    .list();
+        }
+        return Collections.emptyList();
     }
 
     /**
@@ -85,19 +87,16 @@ public class LastReadPostHibernateDao extends AbstractHibernateChildRepository<L
                 .addSynchronizedEntityClass(LastReadPost.class)
                 .setParameter("user", forWho.getId())
                 .setParameter("branch", branch.getId())
-                .setCacheable(false)
                 .executeUpdate();
 
         @SuppressWarnings("unchecked")
         List<Object[]> topicsOfBranch = session.getNamedQuery("getTopicAndCountOfPostsInBranch")
                 .setParameter("branch", branch.getId())
-                .setCacheable(false)
                 .list();
 
         SQLQuery insertQuery = (SQLQuery) session.getNamedQuery("markAllTopicsRead");
         insertQuery
-                .addSynchronizedEntityClass(LastReadPost.class)
-                .setCacheable(false);
+                .addSynchronizedEntityClass(LastReadPost.class);
 
         for (Object[] o : topicsOfBranch) {
             insertQuery.setParameter("uuid", UUID.randomUUID().toString())

@@ -22,7 +22,7 @@
 <%@ taglib prefix="jtalks" uri="http://www.jtalks.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
-    <meta name="description" content="${branch.name}">
+    <meta name="description" content="<c:out value="${branch.name}"/>">
     <title><c:out value="${branch.name}"/> - <c:out value="${cmpDescription}"/></title>
     <script src="${pageContext.request.contextPath}/resources/javascript/custom/subscription.js"
             type="text/javascript"></script>
@@ -39,7 +39,7 @@
             <span id="mark-all-viewed">
                 <i class="icon-check"></i>
                 <a href="${pageContext.request.contextPath}/branches/${branch.id}/markread">
-                    <spring:message code="label.mark_all_topics"/>
+                    <spring:message code="label.mark_all_topics_read"/>
                 </a>
             </span>
             
