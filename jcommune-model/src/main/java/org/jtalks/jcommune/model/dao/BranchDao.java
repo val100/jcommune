@@ -18,7 +18,7 @@ import org.jtalks.common.model.dao.ChildRepository;
 import org.jtalks.jcommune.model.entity.Branch;
 import org.jtalks.jcommune.model.entity.JCUser;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * DAO for the {@link Branch} objects.
@@ -39,7 +39,7 @@ public interface BranchDao extends ChildRepository<Branch> {
      *
      * @return list of {@code Branch} objects
      */
-    List<Branch> getAllBranches();
+    Collection<Branch> getAllBranches();
 
     /**
      * Get count of posts in the branch.

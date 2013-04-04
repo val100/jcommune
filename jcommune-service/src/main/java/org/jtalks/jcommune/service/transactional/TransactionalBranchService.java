@@ -14,9 +14,6 @@
  */
 package org.jtalks.jcommune.service.transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.jtalks.common.model.entity.Section;
 import org.jtalks.jcommune.model.dao.BranchDao;
 import org.jtalks.jcommune.model.dao.SectionDao;
@@ -30,6 +27,10 @@ import org.jtalks.jcommune.service.exceptions.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.prepost.PreAuthorize;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * The implementation of BranchService
@@ -74,7 +75,8 @@ public class TransactionalBranchService extends AbstractTransactionalEntityServi
      */
     @Override
     public List<Branch> getAllBranches() {
-        return this.getDao().getAllBranches();
+        Collection<Branch> branches = getDao().getAllBranches();
+        return new ArrayList<Branch>(branches);
     }
 
     /**

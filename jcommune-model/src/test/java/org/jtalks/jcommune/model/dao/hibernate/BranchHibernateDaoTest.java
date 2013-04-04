@@ -36,6 +36,7 @@ import org.testng.annotations.Test;
 
 import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import static org.testng.Assert.*;
@@ -211,7 +212,7 @@ public class BranchHibernateDaoTest extends AbstractTransactionalTestNGSpringCon
     public void shouldReturnNoBranchesWhenDbIsEmpty() {
         Section emptySection = ObjectsFactory.getDefaultSection();
         session.save(emptySection);
-        List<Branch> selectedBranches = dao.getAllBranches();
+        Collection<Branch> selectedBranches = dao.getAllBranches();
         assertTrue(selectedBranches.isEmpty());
     }
     
@@ -225,7 +226,7 @@ public class BranchHibernateDaoTest extends AbstractTransactionalTestNGSpringCon
         List<Branch> createdBranches = new ArrayList<Branch>(branchesOfSecondSection);
         createdBranches.addAll(branchesOfFirstSection);
 
-        List<Branch> selectedBranches = dao.getAllBranches();
+        Collection<Branch> selectedBranches = dao.getAllBranches();
 
         assertEquals(createdBranches, selectedBranches);//checking the order
     }
