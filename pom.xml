@@ -200,7 +200,7 @@
             <dependency>
                 <groupId>org.aspectj</groupId>
                 <artifactId>aspectjweaver</artifactId>
-                <version>1.6.10</version>
+                <version>1.9.21</version>
             </dependency>
             <!-- Joda Time -->
             <dependency>
