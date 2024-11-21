@@ -174,7 +174,7 @@
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-core</artifactId>
-                <version>3.0.5.RELEASE</version>
+                <version>6.2.7</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.security</groupId>
@@ -317,7 +317,7 @@
             <dependency>
                 <groupId>com.googlecode.flyway</groupId>
                 <artifactId>flyway-core</artifactId>
-                <version>1.4.2</version>
+                <version>1.7</version>
             </dependency>
             <dependency>
                 <groupId>commons-beanutils</groupId>
@@ -585,7 +585,7 @@
 
     <properties>
         <hibernateVersion>3.6.6.Final</hibernateVersion>
-        <springVersion>3.2.1.RELEASE</springVersion>
+        <springVersion>6.1.14</springVersion>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <headerBaseDir>${basedir}</headerBaseDir>
         <pathtoHeader>${headerBaseDir}/header.txt</pathtoHeader>
