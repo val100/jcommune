@@ -328,7 +328,7 @@
             <dependency>
                 <groupId>commons-fileupload</groupId>
                 <artifactId>commons-fileupload</artifactId>
-                <version>1.2.2</version>
+                <version>1.6.0</version>
             </dependency>
             <dependency>
                 <groupId>commons-lang</groupId>
@@ -585,7 +585,7 @@
 
     <properties>
         <hibernateVersion>3.6.6.Final</hibernateVersion>
-        <springVersion>3.2.1.RELEASE</springVersion>
+        <springVersion>3.2.3.RELEASE</springVersion>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <headerBaseDir>${basedir}</headerBaseDir>
         <pathtoHeader>${headerBaseDir}/header.txt</pathtoHeader>
