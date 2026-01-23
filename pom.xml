@@ -72,7 +72,7 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-search</artifactId>
-                <version>3.4.2.Final</version>
+                <version>5.10.12.Final</version>
             </dependency>
             <!-- Validator -->
             <dependency>
@@ -584,7 +584,7 @@
     </distributionManagement>
 
     <properties>
-        <hibernateVersion>3.6.6.Final</hibernateVersion>
+        <hibernateVersion>5.3.38.Final</hibernateVersion>
         <springVersion>3.2.1.RELEASE</springVersion>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <headerBaseDir>${basedir}</headerBaseDir>
